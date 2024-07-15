@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 main(){
@@ -13,8 +12,8 @@ class MyApp extends StatelessWidget{
   Widget build(BuildContext context) {
 
     return  MaterialApp(
-        theme: ThemeData(primarySwatch: Colors.green) ,
-        darkTheme: ThemeData(primarySwatch:Colors.amber),
+        theme: ThemeData(primarySwatch: Colors.green,) ,
+       // darkTheme: ThemeData(primarySwatch:Colors.amber),
         color: Colors.blue,
         debugShowCheckedModeBanner: false,
         home:HomeActivity()
@@ -43,7 +42,7 @@ class HomeActivity extends StatelessWidget{
     return Scaffold(
       appBar: AppBar(
         title: Text("Inventory App"),
-        backgroundColor: Colors.amber,
+       backgroundColor: Colors.amber,
         titleSpacing: 20,
         toolbarHeight: 60,
         toolbarOpacity: 1,
@@ -87,7 +86,7 @@ class HomeActivity extends StatelessWidget{
           }
         },
       ),
-      drawer: Drawer(
+     endDrawer: Drawer(
         child: ListView(
           children: [
             DrawerHeader(
@@ -127,7 +126,4 @@ class HomeActivity extends StatelessWidget{
     );
 
   }
-
-
-
 }
