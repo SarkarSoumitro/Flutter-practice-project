@@ -26,7 +26,10 @@ class intro extends StatelessWidget {
       //home: Listview(),
       //home: gridview(),
       //home: Tabbar(),
-      home: NaviGation(),
+      //home: NaviGation(),
+      // home: cards(),
+      // home: circrlarProgress(),
+      home: Iconclass(),
     );
   }
 }
@@ -549,14 +552,20 @@ class NaviGation extends StatelessWidget {
         children: [
           ElevatedButton(
               onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => Activity1()));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) =>
+                            Activity1("This is from home to activity 1")));
               },
               child: Text("Activity 1")),
           ElevatedButton(
               onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => Activity2()));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) =>
+                            Activity2("This is from home to activity 2")));
               },
               child: Text("Activity 2"))
         ],
@@ -566,17 +575,24 @@ class NaviGation extends StatelessWidget {
 }
 
 class Activity1 extends StatelessWidget {
+  String msg;
+
+  Activity1(this.msg, {super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Navigation bar Activity 1"),
+        title: Text(msg),
       ),
       body: Center(
         child: ElevatedButton(
           onPressed: () {
             Navigator.push(
-                context, MaterialPageRoute(builder: (context) => Activity2()));
+                context,
+                MaterialPageRoute(
+                    builder: (context) =>
+                        Activity2("This is from activity 1 to activity 2")));
           },
           child: Text("go activity 2"),
         ),
@@ -586,19 +602,96 @@ class Activity1 extends StatelessWidget {
 }
 
 class Activity2 extends StatelessWidget {
+  String msg;
+
+  Activity2(this.msg, {super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Navigation bar Activity 2"),
+        title: Text(msg),
       ),
       body: Center(
         child: ElevatedButton(
           onPressed: () {
             Navigator.push(
-                context, MaterialPageRoute(builder: (context) => Activity1()));
+                context,
+                MaterialPageRoute(
+                    builder: (context) =>
+                        Activity1("This is from activity 2 to activity 1")));
           },
           child: Text("go activity 1"),
+        ),
+      ),
+    );
+  }
+}
+
+//Cards
+
+class cards extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Cards"),
+      ),
+      body: Center(
+        child: Card(
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(60)),
+          shadowColor: Colors.black,
+          color: Colors.blueGrey,
+          elevation: 80,
+          child: SizedBox(
+            height: 200,
+            width: 200,
+            child: Center(
+              child: Text("This is card"),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+//circrlarProgress indicator
+
+class circrlarProgress extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("circular progress indicator"),
+        backgroundColor: Colors.lightGreen,
+      ),
+      body: Center(
+        child: CircularProgressIndicator(
+          color: Colors.red,
+          strokeWidth: 5,
+        ),
+      ),
+    );
+  }
+}
+
+//icons class
+
+class Iconclass extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Icons class"),
+        backgroundColor: Colors.orangeAccent,
+      ),
+      body: Center(
+        child: Icon(
+          Icons.camera_alt,
+          size: 200,
+          color: Colors.green,
         ),
       ),
     );
