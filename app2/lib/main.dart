@@ -10,15 +10,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      // Remove color property
-      theme: ThemeData(
-        primarySwatch: Colors.green,
-      ),
-      darkTheme: ThemeData(
-        primarySwatch: Colors.amber,
-      ),
       debugShowCheckedModeBanner: false,
-      home: const MyHomePage(),
+      home:  MyHomePage(),
     );
   }
 }

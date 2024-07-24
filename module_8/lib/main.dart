@@ -29,7 +29,8 @@ class intro extends StatelessWidget {
       //home: NaviGation(),
       // home: cards(),
       // home: circrlarProgress(),
-      home: Iconclass(),
+      //home: Iconclass(),
+      home: gridview(),
     );
   }
 }
