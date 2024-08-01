@@ -3,6 +3,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:ui_practice/components/button.dart';
 
 
 class intropage extends StatelessWidget {
@@ -35,10 +36,12 @@ class intropage extends StatelessWidget {
               //subtitle
                Text("Feel the taste of the most popular japanese foood from anywhere and anytime",
                style: TextStyle(
-                 color: Colors.grey[300],
+                 color: Colors.grey[800],
                  height: 2
-               ),)
+               ),),
+              const SizedBox(height: 15,),
               //button
+              MyButton(text: "Get Started"),
 
             ],
           ),
