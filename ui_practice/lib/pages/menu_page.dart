@@ -2,6 +2,7 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:ui_practice/components/button.dart';
 
 class MenuPage extends StatefulWidget {
   const MenuPage({super.key});
@@ -28,6 +29,22 @@ class _MenuPageState extends State<MenuPage> {
       body: Column(
         children: [
           //primary banner
+          Container(
+            child: Row(
+              children: [
+                //promo message
+                Column(
+                  children: [
+                    Text("Get 20% discount"),
+                  ],
+                ),
+                //redeem button
+                MyButton(text:"Redeem", onTab: (){}),
+
+                //image will be here
+              ],
+            ),
+          )
 
           //search bar
 
