@@ -36,10 +36,11 @@ class _MenuPageState extends State<MenuPage> {
                 Column(
                   children: [
                     Text("Get 20% discount"),
+                     //redeem button
+                    MyButton(text:"Redeem", onTab: (){}),
                   ],
                 ),
                 //redeem button
-                MyButton(text:"Redeem", onTab: (){}),
 
                 //image will be here
               ],
