@@ -2,7 +2,10 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:ui_practice/components/button.dart';
+
+import '../colors/colors.dart';
 
 class MenuPage extends StatefulWidget {
   const MenuPage({super.key});
@@ -30,19 +33,22 @@ class _MenuPageState extends State<MenuPage> {
         children: [
           //primary banner
           Container(
+            decoration:BoxDecoration(color:primarycolors,borderRadius: BorderRadius.circular(20)),
+            margin:const EdgeInsets.symmetric(horizontal:25),
+            padding: const EdgeInsets.all(25),
             child: Row(
               children: [
                 //promo message
                 Column(
                   children: [
-                    Text("Get 20% discount"),
-                     //redeem button
+                    Text("Get 20% discount",style:GoogleFonts.dmSerifDisplay(fontSize: 20,color: Colors.white)),
+                    const SizedBox(height: 20,),
+                    //redeem button
                     MyButton(text:"Redeem", onTab: (){}),
                   ],
                 ),
-                //redeem button
-
                 //image will be here
+                Image.asset('images/shushi.png'),
               ],
             ),
           )
