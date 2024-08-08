@@ -1,10 +1,8 @@
 
-
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:ui_practice/components/button.dart';
 import 'package:ui_practice/model/food.dart';
-
 import '../colors/colors.dart';
 import '../components/food_tile.dart';
 
@@ -21,16 +19,15 @@ class _MenuPageState extends State<MenuPage> {
     //salmon sushi
     food(imagePath: 'images/sushi.png', name: 'salmon sushi', price: '78', rating: '9/10'),
     //tuna sushi
-    food(imagePath: 'images/sushi.png', name: 'tuna sushi', price: '87', rating: '9/10'),
+    food(imagePath: 'images/one.png', name: 'tuna sushi', price: '87', rating: '9/10'),
 
-    food(imagePath: 'images/sushi.png', name: 'salmon sushi', price: '78', rating: '9/10'),
+    food(imagePath: 'images/new.png', name: 'salmon sushi', price: '78', rating: '9/10'),
     food(imagePath: 'images/sushi.png', name: 'salmon sushi', price: '78', rating: '9/10'),
     food(imagePath: 'images/sushi.png', name: 'salmon sushi', price: '78', rating: '9/10'),
     food(imagePath: 'images/sushi.png', name: 'salmon sushi', price: '78', rating: '9/10'),
     food(imagePath: 'images/sushi.png', name: 'salmon sushi', price: '78', rating: '9/10'),
 
   ];
-
 
   @override
   Widget build(BuildContext context) {
@@ -76,7 +73,7 @@ class _MenuPageState extends State<MenuPage> {
           Padding(
             padding: const EdgeInsets.all(20),
             child: TextField(
-              decoration: InputDecoration(border: OutlineInputBorder(
+              decoration: InputDecoration(hintText:"Salmon sushi",border: OutlineInputBorder(
                 borderSide: BorderSide(color: Colors.white),
                 borderRadius: BorderRadius.circular(20)
               ),
@@ -122,7 +119,7 @@ class _MenuPageState extends State<MenuPage> {
             ),
             child: Row(
               children: [
-                Image.asset('images/sushi.png',height: 75,),
+                Image.asset('images/one.png',height: 75,),
                 const SizedBox(width: 20,),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
