@@ -1,5 +1,6 @@
 import 'package:auth_ui/components/Mybutton.dart';
 import 'package:auth_ui/components/Mytextstyle.dart';
+import 'package:auth_ui/components/square_tile.dart';
 import 'package:flutter/material.dart';
 
 class Loginpage extends StatelessWidget {
@@ -108,20 +109,36 @@ class Loginpage extends StatelessWidget {
                 ),
               ),
 
+              const SizedBox(
+                height: 50,
+              ),
               //goggle + apple sign in button
               Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   //goggle button
-                  Image.asset(
-                    'images/goggle.png',
-                    height: 70,
-                  )
-
+                  SquareTile(imagepath: 'images/Goggle.png'),
+                  const SizedBox(
+                    width: 10,
+                  ),
                   //apple button
+                  SquareTile(imagepath: 'images/apple-logo.png'),
                 ],
               ),
-
+              const SizedBox(
+                height: 50,
+              ),
               //not a member? resister now
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text("Not a member?"),
+                  Text(
+                    "Register now",
+                    style: TextStyle(color: Colors.blue),
+                  )
+                ],
+              )
             ],
           ),
         ),
