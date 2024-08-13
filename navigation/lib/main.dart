@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:navigation/components/Mybutton.dart';
+import 'package:navigation/pages/page_2.dart';
 
 void main() {
   runApp(Myapp());
@@ -35,8 +36,20 @@ class New extends StatelessWidget {
           const SizedBox(
             height: 50,
           ),
-          Mybutton(buttonname: "P A G E 1"),
-          Mybutton(buttonname: "P A G E 2"),
+          Mybutton(
+            buttonname: "P A G E 1",
+            onTap: () {
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => Page_2()));
+            },
+          ),
+          Mybutton(
+            buttonname: "P A G E 2",
+            onTap: () {
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => Page_2()));
+            },
+          ),
         ],
       ),
     );
