@@ -2,6 +2,7 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:module_9/Card/card.dart';
 
 class ac1 extends StatelessWidget {
   const ac1({super.key});
@@ -46,8 +47,8 @@ class ac2 extends StatelessWidget {
             children: [
               Text(msg),
               ElevatedButton(onPressed: (){
-                Navigator.push(context, MaterialPageRoute(builder: (context) => ac1()));
-              }, child: Text("Go to activity 1"))
+                Navigator.push(context, MaterialPageRoute(builder: (context) => card()));
+              }, child: Text("Go to Card"))
             ],
           ),
         )

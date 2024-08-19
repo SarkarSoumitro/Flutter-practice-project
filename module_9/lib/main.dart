@@ -3,6 +3,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:module_9/Card/card.dart';
+import 'package:module_9/Circular%20progress/circu.dart';
 
 import 'Navigation by passing data/navi.dart';
 
@@ -17,8 +18,7 @@ class module extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      //home: ac1(),
-      home: card(),
+      home: ac1(),
     );
   }
 }
