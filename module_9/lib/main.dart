@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:module_9/Fractionaly%20sized%20box/fraction_s.dart';
+import 'package:module_9/Responsivegrid/responsive.dart';
 
 void main() {
   runApp(module());
@@ -13,7 +13,12 @@ class module extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       //  home: ac1(),
-      home: FractionS(),
+      // home: FractionS(),
+      //home: Expands(),
+      // home: flex(),
+      //home: Media(),
+      // home: media(),
+      home: responsive(),
     );
   }
 }

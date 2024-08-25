@@ -12,7 +12,8 @@ class Singlechild extends StatelessWidget {
         backgroundColor: Colors.amber,
       ),
       body: SingleChildScrollView(
-        child: Column(
+        scrollDirection: Axis.horizontal,
+        child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Container(
