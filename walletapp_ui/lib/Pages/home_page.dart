@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import 'package:walletapp_ui/util/Mytiles.dart';
 import 'package:walletapp_ui/util/my_button.dart';
 import 'package:walletapp_ui/util/my_cards.dart';
 
@@ -114,9 +115,25 @@ class _HomePageState extends State<Homepage> {
                   MyButton(buttonText: "Bill's", imagepath: "images/bill.png")
                 ],
               ),
-            )
+            ),
 
             //columns -> stats + transactions
+            Padding(
+              padding: const EdgeInsets.all(25.0),
+              child: Column(
+                children: [
+                  Listtiles(
+                    imagepath: "images/analysis.png",
+                    tiledescription: "Payment and income",
+                    tilename: "Statistics",
+                  ),
+                  Listtiles(
+                      imagepath: "images/credit-card.png",
+                      tilename: "Transactions ",
+                      tiledescription: "Traction History")
+                ],
+              ),
+            )
           ],
         ),
       ),
