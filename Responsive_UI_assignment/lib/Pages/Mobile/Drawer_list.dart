@@ -22,7 +22,7 @@ class Dlist extends StatelessWidget {
               )),
               Expanded(
                   child: Text(
-                AutofillHints.name,
+                name,
                 style: TextStyle(color: Colors.black, fontSize: 16),
               ))
             ],

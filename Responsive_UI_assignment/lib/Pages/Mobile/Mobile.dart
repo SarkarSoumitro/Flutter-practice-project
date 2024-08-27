@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:responsive_ui_assignment/Pages/Mobile/Drawer_header.dart';
 import 'package:responsive_ui_assignment/Pages/Mobile/Drawer_list.dart';
+import 'package:responsive_ui_assignment/Pages/Mobile/Mybuttons.dart';
 
 class MobileHomepage extends StatelessWidget {
   const MobileHomepage({super.key});
@@ -29,14 +30,35 @@ class MobileHomepage extends StatelessWidget {
             const SizedBox(
               height: 20,
             ),
-            Dlist(name: "Episodes", icon: Icons.video_call_rounded),
-            Dlist(name: "About", icon: Icons.account_box_outlined),
+            Dlist(name: "Episodes", icon: Icons.ondemand_video_outlined),
+            Dlist(name: "About", icon: Icons.info),
           ],
         ),
       )),
-      body: Center(
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 120),
         child: Column(
-          children: [Text()],
+          children: [
+            Text(
+              "FLUTTER WEB.\nTHE BASICS",
+              style: TextStyle(fontSize: 34, fontWeight: FontWeight.w900),
+            ),
+            const SizedBox(
+              height: 30,
+            ),
+            Text(
+              "In this course we will go over the basics of using flutter Web for development.Topics will include Responsive Layout, Deploying, Font Changes, Hover functionality, Models and more.",
+              style: TextStyle(fontSize: 17),
+            ),
+            const SizedBox(
+              height: 50,
+            ),
+            Mybuttons(
+              name: "Join course",
+              width: double.infinity,
+              fonts: 12,
+            )
+          ],
         ),
       ),
     );

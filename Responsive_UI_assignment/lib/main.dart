@@ -1,19 +1,21 @@
 import 'package:flutter/material.dart';
-
-import 'Pages/Mobile/Mobile.dart';
+import 'package:responsive_ui_assignment/Responsive/Respon.dart';
 
 void main() {
   runApp(myapp());
 }
 
 class myapp extends StatelessWidget {
-  const myapp({super.key});
+  myapp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: MobileHomepage(),
+      // home: MobileHomepage(),
+      //home: Tablet(),
+      // home: Laptop(),
+      home: respons(),
     );
   }
 }
