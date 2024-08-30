@@ -71,7 +71,7 @@ class _HomepageState extends State<Homepage> {
               height: 25,
             ),
             Text(
-              "Result: $_result",
+              "Result: ${_result.toStringAsFixed(2)}",
               style: TextStyle(
                 fontSize: 20,
               ),
