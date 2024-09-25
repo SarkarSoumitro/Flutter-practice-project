@@ -1,4 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:module_14_task_management/screen/onboarding/emailVerificationScreen.dart';
+import 'package:module_14_task_management/screen/onboarding/loginScreen.dart';
+import 'package:module_14_task_management/screen/onboarding/pinVerificationScreen.dart';
+import 'package:module_14_task_management/screen/onboarding/registrationScreen.dart';
+import 'package:module_14_task_management/screen/onboarding/setPasswordScreen.dart';
+import 'package:module_14_task_management/screen/onboarding/splashScreen.dart';
 
 void main() {
   runApp(new Myapp());
@@ -11,21 +17,15 @@ class Myapp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Homepage(),
+      initialRoute: '/setPassword',
+      routes: {
+        '/': (context) => SplashScreen(),
+        '/login': (context) => LoginScreen(),
+        '/registration': (context) => ragistrationScreen(),
+        '/emailVerification': (context) => emailVerificationScreen(),
+        '/pinVerification': (context) => pinVerificationScreen(),
+        '/setPassword': (context) => setPasswordScreen(),
+      },
     );
-  }
-}
-
-class Homepage extends StatefulWidget {
-  const Homepage({super.key});
-
-  @override
-  State<Homepage> createState() => _HomepageState();
-}
-
-class _HomepageState extends State<Homepage> {
-  @override
-  Widget build(BuildContext context) {
-    return const Placeholder();
   }
 }
