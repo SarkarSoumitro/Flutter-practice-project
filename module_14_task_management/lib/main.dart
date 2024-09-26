@@ -17,7 +17,7 @@ class Myapp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: '/setPassword',
+      initialRoute: '/pinVerification',
       routes: {
         '/': (context) => SplashScreen(),
         '/login': (context) => LoginScreen(),
