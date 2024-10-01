@@ -3,6 +3,8 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:module_14_task_management/style/style.dart';
 
+import '../utility/utility.dart';
+
 var BaseURL = "http://152.42.163.176:2006/api/v1";
 var RequestHeader = {"Content-Type": "application/json"};
 
@@ -16,6 +18,7 @@ Future<bool> LoginRequest(FormValues) async {
       var ResultBody = jsonDecode(Response.body);
       if (ResultBody['status'] == 'success') {
         SuccessToast("Request success");
+        await storeUserData(ResultBody);
         return true;
       } else {
         ErrorToast("Error: ${ResultBody['message'] ?? 'Unknown error'}");
@@ -27,6 +30,7 @@ Future<bool> LoginRequest(FormValues) async {
     }
   } catch (e) {
     ErrorToast("Network error: $e");
+    print("Network error: $e");
     return false;
   }
 }
