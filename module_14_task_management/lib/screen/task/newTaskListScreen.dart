@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:module_14_task_management/utility/utility.dart';
 
 class newTaskListScreen extends StatefulWidget {
   const newTaskListScreen({super.key});
@@ -9,28 +8,12 @@ class newTaskListScreen extends StatefulWidget {
 }
 
 class _newTaskListScreenState extends State<newTaskListScreen> {
-  String email = "";
-
-  @override
-  void initState() {
-    CallUserData();
-    super.initState();
-  }
-
-  CallUserData() async {
-    String? a = await ReadUserData('email');
-    print("email is " + a!);
-    setState(() {
-      email = a!;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
         child: Text(
-          email,
+          "New task list",
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
       ),

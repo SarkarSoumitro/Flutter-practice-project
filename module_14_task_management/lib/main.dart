@@ -6,13 +6,22 @@ import 'package:module_14_task_management/screen/onboarding/registrationScreen.d
 import 'package:module_14_task_management/screen/onboarding/setPasswordScreen.dart';
 import 'package:module_14_task_management/screen/onboarding/splashScreen.dart';
 import 'package:module_14_task_management/screen/task/newTaskListScreen.dart';
+import 'package:module_14_task_management/utility/utility.dart';
 
-void main() {
-  runApp(new Myapp());
+main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  String? token = await ReadUserData('token');
+  if (token == null) {
+    runApp(Myapp('/login'));
+  } else {
+    runApp(Myapp('/newTaskList'));
+  }
 }
 
 class Myapp extends StatelessWidget {
-  const Myapp({super.key});
+  final String FirstRout;
+
+  const Myapp(this.FirstRout);
 
   @override
   Widget build(BuildContext context) {

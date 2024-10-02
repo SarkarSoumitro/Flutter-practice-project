@@ -35,17 +35,35 @@ Future<bool> LoginRequest(FormValues) async {
   }
 }
 
-Future<bool> RegistrationRequest(Formvalues) async {
-  var url = Uri.parse("${BaseURL}/registration");
-  var PostBody = jsonEncode(Formvalues);
-  var Response = await http.post(url, headers: RequestHeader, body: PostBody);
-  var ResultCode = Response.statusCode;
-  var ResultBody = jsonDecode(Response.body);
-  if (ResultCode == '200' && ResultBody['status'] == 'success') {
-    SuccessToast("Request success");
-    return true;
-  } else {
-    ErrorToast("Failed the request");
+Future<bool> RegistrationRequest(Map<String, String> formValues) async {
+  try {
+    var url = Uri.parse("${BaseURL}/registration");
+    var postBody = jsonEncode(formValues);
+
+    var response = await http.post(url, headers: RequestHeader, body: postBody);
+    var resultCode = response.statusCode;
+
+    // Handle response body safely
+    var resultBody;
+    try {
+      resultBody = jsonDecode(response.body);
+    } catch (e) {
+      print("Error decoding response body: $e");
+      ErrorToast("Invalid response format from server.");
+      return false;
+    }
+
+    // Check status code and result
+    if (resultCode == 200 && resultBody['status'] == 'success') {
+      SuccessToast("Request successful");
+      return true;
+    } else {
+      ErrorToast("Request failed: ${resultBody['message'] ?? 'Unknown error'}");
+      return false;
+    }
+  } catch (e) {
+    print("Error during registration request: $e");
+    ErrorToast("Failed to connect to the server.");
     return false;
   }
 }

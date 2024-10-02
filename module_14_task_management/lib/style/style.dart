@@ -30,6 +30,14 @@ TextStyle Head6Text(textColor) {
       fontWeight: FontWeight.w400);
 }
 
+TextStyle Head7Text(textColor) {
+  return TextStyle(
+      color: textColor,
+      fontSize: 13,
+      fontFamily: 'poppins',
+      fontWeight: FontWeight.w400);
+}
+
 InputDecoration AppInputDecoration(label) {
   return InputDecoration(
       focusedBorder: const OutlineInputBorder(
