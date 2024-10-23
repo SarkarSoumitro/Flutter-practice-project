@@ -3,34 +3,21 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:module_14_task_management/style/style.dart';
 
-import '../utility/utility.dart';
-
 var BaseURL = "http://152.42.163.176:2006/api/v1";
 var RequestHeader = {"Content-Type": "application/json"};
 
 Future<bool> LoginRequest(FormValues) async {
-  try {
-    var url = Uri.parse("${BaseURL}/Login");
-    var Postbody = jsonEncode(FormValues);
-    var Response = await http.post(url, headers: RequestHeader, body: Postbody);
-
-    if (Response.statusCode == 200) {
-      var ResultBody = jsonDecode(Response.body);
-      if (ResultBody['status'] == 'success') {
-        SuccessToast("Request success");
-        await storeUserData(ResultBody);
-        return true;
-      } else {
-        ErrorToast("Error: ${ResultBody['message'] ?? 'Unknown error'}");
-        return false;
-      }
-    } else {
-      ErrorToast("Failed with status code: ${Response.statusCode}");
-      return false;
-    }
-  } catch (e) {
-    ErrorToast("Network error: $e");
-    print("Network error: $e");
+  var URL = Uri.parse("${BaseURL}/login");
+  var PostBody = json.encode(FormValues);
+  var response = await http.post(URL, headers: RequestHeader, body: PostBody);
+  var ResultCode = response.statusCode;
+  var ResultBody = json.decode(response.body);
+  if (ResultCode == 200 && ResultBody['status'] == "success") {
+    SuccessToast("Request Success");
+    // await WriteUserData(ResultBody);
+    return true;
+  } else {
+    ErrorToast("Request fail ! try again");
     return false;
   }
 }

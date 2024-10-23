@@ -1,68 +1,55 @@
 import 'package:flutter/material.dart';
-import 'package:module_14_task_management/style/style.dart';
 
 import '../../api/apiClient.dart';
-import 'loginScreen.dart';
+import '../../style/style.dart';
 
 class ragistrationScreen extends StatefulWidget {
-  const ragistrationScreen({super.key});
-
+  const ragistrationScreen({Key? key}) : super(key: key);
   @override
   State<ragistrationScreen> createState() => _ragistrationScreenState();
 }
 
 class _ragistrationScreenState extends State<ragistrationScreen> {
-  Map<String, String> formValues = {
+  Map<String, String> FormValues = {
     "email": "",
     "firstName": "",
     "lastName": "",
     "mobile": "",
     "password": "",
     "photo": "",
-    "cpassword": "",
+    "cpassword": ""
   };
-  bool loading = false;
+  bool Loading = false;
 
-  InputOnChange(String mapKey, String textValue) {
+  InputOnChange(MapKey, Textvalue) {
     setState(() {
-      formValues.update(mapKey, (value) => textValue);
+      FormValues.update(MapKey, (value) => Textvalue);
     });
   }
 
-  formOnSubmit() async {
-    if (formValues['email']!.isEmpty) {
-      ErrorToast("Email Required");
-      return;
-    } else if (formValues['password']!.isEmpty) {
-      ErrorToast("Password Required");
-      return;
-    } else if (formValues['firstName']!.isEmpty) {
-      ErrorToast("First Name Required");
-      return;
-    } else if (formValues['lastName']!.isEmpty) {
-      ErrorToast("Last Name Required");
-      return;
-    } else if (formValues['mobile']!.isEmpty) {
-      ErrorToast("Mobile Required");
-      return;
-    } else if (formValues['password'] != formValues['cpassword']) {
-      ErrorToast("Confirm password should be the same");
-      return;
+  FormOnSubmit() async {
+    if (FormValues['email']!.length == 0) {
+      ErrorToast('Email Required !');
+    } else if (FormValues['firstName']!.length == 0) {
+      ErrorToast('First Name Required !');
+    } else if (FormValues['lastName']!.length == 0) {
+      ErrorToast('Last Name Required !');
+    } else if (FormValues['mobile']!.length == 0) {
+      ErrorToast('Mobile No Required !');
+    } else if (FormValues['password']!.length == 0) {
+      ErrorToast('Mobile No Required !');
+    } else if (FormValues['password'] != FormValues['cpassword']) {
+      ErrorToast('Confirm password should be same!');
     } else {
       setState(() {
-        loading = true;
+        Loading = true;
       });
-      bool res = await RegistrationRequest(formValues);
+      bool res = await RegistrationRequest(FormValues);
       if (res == true) {
-        Navigator.pushAndRemoveUntil(
-            context,
-            MaterialPageRoute(
-                builder: (context) =>
-                    LoginScreen()), // Fix this with actual LoginScreen
-            (route) => false);
+        Navigator.pushNamedAndRemoveUntil(context, "/login", (route) => false);
       } else {
         setState(() {
-          loading = false;
+          Loading = false;
         });
       }
     }
@@ -74,78 +61,72 @@ class _ragistrationScreenState extends State<ragistrationScreen> {
       body: Stack(
         children: [
           ScreenBackground(context),
-          SingleChildScrollView(
-            child: loading
-                ? Center(
-                    child: CircularProgressIndicator(),
-                  )
-                : Container(
-                    padding: EdgeInsets.all(30),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "Join With Us",
-                          style: Head1Text(colorDarkBlue),
+          Container(
+            alignment: Alignment.center,
+            child: SingleChildScrollView(
+                child: Loading
+                    ? (Center(child: CircularProgressIndicator()))
+                    : (Container(
+                        padding: EdgeInsets.all(30),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Text("Join With Us",
+                                style: Head1Text(colorDarkBlue)),
+                            SizedBox(height: 1),
+                            Text("Learn with rabbil hasan",
+                                style: Head6Text(colorLightGray)),
+                            SizedBox(height: 20),
+                            TextFormField(
+                                decoration: AppInputDecoration("Email Address"),
+                                onChanged: (Textvalue) {
+                                  InputOnChange("email", Textvalue);
+                                }),
+                            SizedBox(height: 20),
+                            TextFormField(
+                                decoration: AppInputDecoration("First Name"),
+                                onChanged: (Textvalue) {
+                                  InputOnChange("firstName", Textvalue);
+                                }),
+                            SizedBox(height: 20),
+                            TextFormField(
+                                decoration: AppInputDecoration("Last Name"),
+                                onChanged: (Textvalue) {
+                                  InputOnChange("lastName", Textvalue);
+                                }),
+                            SizedBox(height: 20),
+                            TextFormField(
+                                decoration: AppInputDecoration("Mobile"),
+                                onChanged: (Textvalue) {
+                                  InputOnChange("mobile", Textvalue);
+                                }),
+                            SizedBox(height: 20),
+                            TextFormField(
+                                decoration: AppInputDecoration("Password"),
+                                onChanged: (Textvalue) {
+                                  InputOnChange("password", Textvalue);
+                                }),
+                            SizedBox(height: 20),
+                            TextFormField(
+                                decoration:
+                                    AppInputDecoration("Confirm Password"),
+                                onChanged: (Textvalue) {
+                                  InputOnChange("cpassword", Textvalue);
+                                }),
+                            SizedBox(height: 20),
+                            Container(
+                              child: ElevatedButton(
+                                style: AppButtonStyle(),
+                                child: SuccessButtonChild('Registration'),
+                                onPressed: () {
+                                  FormOnSubmit();
+                                },
+                              ),
+                            )
+                          ],
                         ),
-                        const SizedBox(height: 20),
-                        Text(
-                          "Learn from Mistakes",
-                          style: Head6Text(colorLightGray),
-                        ),
-                        const SizedBox(height: 20),
-                        TextFormField(
-                          decoration: AppInputDecoration("Email address"),
-                          onChanged: (textValue) {
-                            InputOnChange("email", textValue);
-                          },
-                        ),
-                        const SizedBox(height: 20),
-                        TextFormField(
-                          decoration: AppInputDecoration("First Name"),
-                          onChanged: (textValue) {
-                            InputOnChange("firstName", textValue);
-                          },
-                        ),
-                        const SizedBox(height: 20),
-                        TextFormField(
-                          decoration: AppInputDecoration("Last Name"),
-                          onChanged: (textValue) {
-                            InputOnChange("lastName", textValue);
-                          },
-                        ),
-                        const SizedBox(height: 20),
-                        TextFormField(
-                          decoration: AppInputDecoration("Mobile Number"),
-                          onChanged: (textValue) {
-                            InputOnChange("mobile", textValue);
-                          },
-                        ),
-                        const SizedBox(height: 20),
-                        TextFormField(
-                          decoration: AppInputDecoration("Password"),
-                          onChanged: (textValue) {
-                            InputOnChange(
-                                "password", textValue); // Corrected key
-                          },
-                        ),
-                        const SizedBox(height: 20),
-                        TextFormField(
-                          decoration: AppInputDecoration("Confirm Password"),
-                          onChanged: (textValue) {
-                            InputOnChange("cpassword", textValue);
-                          },
-                        ),
-                        const SizedBox(height: 20),
-                        ElevatedButton(
-                          style: AppButtonStyle(),
-                          onPressed: formOnSubmit,
-                          child: SuccessButtonChild("Register"),
-                        )
-                      ],
-                    ),
-                  ),
+                      ))),
           )
         ],
       ),
