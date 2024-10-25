@@ -27,7 +27,7 @@ class Myapp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: '/login',
+      initialRoute: '/emailVerification',
       routes: {
         '/': (context) => SplashScreen(),
         '/login': (context) => LoginScreen(),

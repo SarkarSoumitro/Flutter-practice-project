@@ -14,6 +14,16 @@ Future<void> storeUserData(Map<String, dynamic> userData) async {
   //print("User email stored: ${userData['data']['email']}");
 }
 
+Future<void> WriteEmailVerification(Email) async {
+  final prefs = await SharedPreferences.getInstance();
+  await prefs.setString('EmailVerification', Email);
+}
+
+Future<void> WriteOTPVerification(OTP) async {
+  final prefs = await SharedPreferences.getInstance();
+  await prefs.setString('OTPVerification', OTP);
+}
+
 Future<String?> ReadUserData(Key) async {
   final prefs = await SharedPreferences.getInstance();
   String? mydata = await prefs.getString(Key);
