@@ -4,18 +4,18 @@ import 'package:http/http.dart' as http;
 import 'package:module_14_task_management/style/style.dart';
 import 'package:module_14_task_management/utility/utility.dart';
 
-var BaseURL = "http://152.42.163.176:2006/api/v1";
+var BaseURL = "http://35.73.30.144:2005/api/v1";
 var RequestHeader = {"Content-Type": "application/json"};
 
 Future<bool> LoginRequest(FormValues) async {
-  var URL = Uri.parse("${BaseURL}/login");
+  var URL = Uri.parse("${BaseURL}/Login");
   var PostBody = json.encode(FormValues);
   var response = await http.post(URL, headers: RequestHeader, body: PostBody);
   var ResultCode = response.statusCode;
   var ResultBody = json.decode(response.body);
   if (ResultCode == 200 && ResultBody['status'] == "success") {
     SuccessToast("Request Success");
-    // await WriteUserData(ResultBody);
+    await storeUserData(ResultBody);
     return true;
   } else {
     ErrorToast("Request fail ! try again");
@@ -25,7 +25,7 @@ Future<bool> LoginRequest(FormValues) async {
 
 Future<bool> RegistrationRequest(Map<String, String> formValues) async {
   try {
-    var url = Uri.parse("${BaseURL}/registration");
+    var url = Uri.parse("${BaseURL}/Registration");
     var postBody = jsonEncode(formValues);
 
     var response = await http.post(url, headers: RequestHeader, body: postBody);
@@ -141,5 +141,24 @@ Future<bool> SetPasswordRequest(Map<String, String> formValues) async {
     print("Exception: $e");
     ErrorToast("An error occurred while resetting the password.");
     return false;
+  }
+}
+
+Future<List> TaskListRequest(Status) async {
+  var URL = Uri.parse("${BaseURL}/listTaskByStatus/${Status}");
+  String? token = await ReadUserData("token");
+  var RequestHeaderWithToken = {
+    "Content-Type": "application/json",
+    "token": '$token'
+  };
+  var response = await http.get(URL, headers: RequestHeaderWithToken);
+  var ResultCode = response.statusCode;
+  var ResultBody = json.decode(response.body);
+  if (ResultCode == 200 && ResultBody['status'] == "success") {
+    //SuccessToast("Request Success");
+    return ResultBody['data'];
+  } else {
+    ErrorToast("Request fail ! try again");
+    return [];
   }
 }

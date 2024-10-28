@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:module_14_task_management/component/newTaskList.dart';
 import 'package:module_14_task_management/screen/onboarding/emailVerificationScreen.dart';
 import 'package:module_14_task_management/screen/onboarding/loginScreen.dart';
 import 'package:module_14_task_management/screen/onboarding/pinVerificationScreen.dart';
 import 'package:module_14_task_management/screen/onboarding/registrationScreen.dart';
 import 'package:module_14_task_management/screen/onboarding/setPasswordScreen.dart';
-import 'package:module_14_task_management/screen/onboarding/splashScreen.dart';
-import 'package:module_14_task_management/screen/task/newTaskListScreen.dart';
+import 'package:module_14_task_management/screen/task/homeScreen.dart';
 import 'package:module_14_task_management/utility/utility.dart';
 
 main() async {
@@ -27,15 +27,15 @@ class Myapp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: '/emailVerification',
+      initialRoute: '/login',
       routes: {
-        '/': (context) => SplashScreen(),
+        '/': (context) => homeScreen(),
         '/login': (context) => LoginScreen(),
         '/registration': (context) => ragistrationScreen(),
         '/emailVerification': (context) => emailVerificationScreen(),
         '/pinVerification': (context) => pinVerificationScreen(),
         '/setPassword': (context) => setPasswordScreen(),
-        '/newTaskList': (context) => newTaskListScreen()
+        '/newTaskList': (context) => newTaskList()
       },
     );
   }

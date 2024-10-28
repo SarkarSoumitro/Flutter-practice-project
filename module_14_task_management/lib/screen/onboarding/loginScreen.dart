@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:module_14_task_management/api/apiClient.dart';
+import 'package:module_14_task_management/screen/task/homeScreen.dart';
 import 'package:module_14_task_management/style/style.dart';
-
-import '../task/newTaskListScreen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -46,7 +45,7 @@ class _LoginScreenState extends State<LoginScreen> {
           context,
           MaterialPageRoute(
               builder: (context) =>
-                  newTaskListScreen()), // Replace with your actual screen
+                  homeScreen()), // Replace with your actual screen
           (route) => false);
     } else {
       // You can show a specific error message here if you get any response back
