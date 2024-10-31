@@ -32,8 +32,13 @@ class _newTaskListState extends State<newTaskList> {
         ? (Center(
             child: CircularProgressIndicator(),
           ))
-        : Center(
-            child: Text("new"),
+        : RefreshIndicator(
+            onRefresh: () async {
+              await CallData();
+            },
+            child: Center(
+              child: Text("new"),
+            ),
           );
   }
 }
