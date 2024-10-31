@@ -33,9 +33,13 @@ class _cancelTaskListState extends State<cancelTaskList> {
         ? (Center(
             child: CircularProgressIndicator(),
           ))
-        : Center(
-            child: Text("Cancel"),
+        : RefreshIndicator(
+            onRefresh: () async {
+              await CallData();
+            },
+            child: Center(
+              child: Text("cancel"),
+            ),
           );
-    ;
   }
 }

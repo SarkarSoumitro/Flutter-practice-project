@@ -33,9 +33,13 @@ class _completedTaskListState extends State<completedTaskList> {
         ? (Center(
             child: CircularProgressIndicator(),
           ))
-        : Center(
-            child: Text("Complete"),
+        : RefreshIndicator(
+            onRefresh: () async {
+              await CallData();
+            },
+            child: Center(
+              child: Text("completedTaskList"),
+            ),
           );
-    ;
   }
 }

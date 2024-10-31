@@ -33,8 +33,13 @@ class _progressTaskListState extends State<progressTaskList> {
         ? (Center(
             child: CircularProgressIndicator(),
           ))
-        : Center(
-            child: Text("progress"),
+        : RefreshIndicator(
+            onRefresh: () async {
+              await CallData();
+            },
+            child: Center(
+              child: Text("progressTask"),
+            ),
           );
   }
 }
