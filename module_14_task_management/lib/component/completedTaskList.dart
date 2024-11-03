@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../api/apiClient.dart';
+import 'TaskList.dart';
 
 class completedTaskList extends StatefulWidget {
   const completedTaskList({super.key});
@@ -37,9 +38,6 @@ class _completedTaskListState extends State<completedTaskList> {
             onRefresh: () async {
               await CallData();
             },
-            child: Center(
-              child: Text("completedTaskList"),
-            ),
-          );
+            child: TaskList(TaskItems));
   }
 }

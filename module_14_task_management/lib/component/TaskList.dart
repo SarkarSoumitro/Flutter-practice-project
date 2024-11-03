@@ -10,11 +10,11 @@ ListView TaskList(TaskItems) {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Text(
-              TaskItems[index]['title'],
+              TaskItems[index]["title"],
               style: Head6Text(colorDarkBlue),
             ),
             Text(
-              TaskItems[index]['description'],
+              TaskItems[index]["description"],
               style: Head7Text(colorDarkBlue),
             ),
           ],

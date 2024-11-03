@@ -28,8 +28,11 @@ Future<void> WriteOTPVerification(OTP) async {
   await prefs.setString('OTPVerification', OTP);
 }
 
-Future<String?> ReadUserData(Key) async {
+Future<String?> ReadUserData(String Key) async {
   final prefs = await SharedPreferences.getInstance();
-  String? mydata = await prefs.getString(Key);
+  String? mydata = prefs.getString(Key);
+  print("There is all the data: $mydata");
   return mydata;
 }
+
+ShowBase64Image() {}

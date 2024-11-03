@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:module_14_task_management/api/apiClient.dart';
+import 'package:module_14_task_management/component/TaskList.dart';
 
 class newTaskList extends StatefulWidget {
   const newTaskList({super.key});
@@ -19,7 +20,8 @@ class _newTaskListState extends State<newTaskList> {
   }
 
   CallData() async {
-    var data = await TaskListRequest("New"); // Make the API call
+    var data = await TaskListRequest("Completed");
+    print("Fetched Data: $data");
     setState(() {
       loading = false; // Stop the loading indicator
       TaskItems = data; // Assign fetched tasks to TaskItems
@@ -36,9 +38,6 @@ class _newTaskListState extends State<newTaskList> {
             onRefresh: () async {
               await CallData();
             },
-            child: Center(
-              child: Text("new"),
-            ),
-          );
+            child: TaskList(TaskItems));
   }
 }

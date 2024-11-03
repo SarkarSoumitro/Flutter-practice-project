@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../api/apiClient.dart';
+import 'TaskList.dart';
 
 class progressTaskList extends StatefulWidget {
   const progressTaskList({super.key});
@@ -37,9 +38,6 @@ class _progressTaskListState extends State<progressTaskList> {
             onRefresh: () async {
               await CallData();
             },
-            child: Center(
-              child: Text("progressTask"),
-            ),
-          );
+            child: TaskList(TaskItems));
   }
 }
