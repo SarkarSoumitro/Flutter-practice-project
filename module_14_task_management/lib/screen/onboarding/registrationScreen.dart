@@ -3,13 +3,13 @@ import 'package:flutter/material.dart';
 import '../../api/apiClient.dart';
 import '../../style/style.dart';
 
-class ragistrationScreen extends StatefulWidget {
-  const ragistrationScreen({Key? key}) : super(key: key);
+class registrationScreen extends StatefulWidget {
+  const registrationScreen({Key? key}) : super(key: key);
   @override
-  State<ragistrationScreen> createState() => _ragistrationScreenState();
+  State<registrationScreen> createState() => _registrationScreenState();
 }
 
-class _ragistrationScreenState extends State<ragistrationScreen> {
+class _registrationScreenState extends State<registrationScreen> {
   Map<String, String> FormValues = {
     "email": "",
     "firstName": "",

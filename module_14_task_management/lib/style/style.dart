@@ -23,6 +23,22 @@ SizedBox ItemSizeBox(child) {
   );
 }
 
+PinTheme AppOTPStyle() {
+  return PinTheme(
+    inactiveColor: colorLight,
+    inactiveFillColor: colorWhite,
+    selectedColor: colorGreen,
+    activeColor: colorWhite,
+    selectedFillColor: colorGreen,
+    shape: PinCodeFieldShape.box,
+    borderRadius: BorderRadius.circular(5),
+    fieldHeight: 50,
+    borderWidth: 0.5,
+    fieldWidth: 45,
+    activeFillColor: Colors.white,
+  );
+}
+
 TextStyle Head1Text(textColor) {
   return TextStyle(
     color: textColor,
@@ -84,7 +100,7 @@ DecoratedBox AppDropDownStyle(child) {
 
 SvgPicture ScreenBackground(context) {
   return SvgPicture.asset(
-    'images/screen-back.svg',
+    'assets/images/screen-back.svg',
     alignment: Alignment.center,
     width: MediaQuery.of(context).size.width,
     height: MediaQuery.of(context).size.height,
@@ -110,10 +126,7 @@ ButtonStyle AppStatusButtonStyle(btnColor) {
 
 TextStyle ButtonTextStyle() {
   return TextStyle(
-      fontSize: 17,
-      fontFamily: 'poppins',
-      fontWeight: FontWeight.w400,
-      color: Colors.white);
+      fontSize: 14, fontFamily: 'poppins', fontWeight: FontWeight.w400);
 }
 
 Ink SuccessButtonChild(String ButtonText) {
@@ -128,6 +141,21 @@ Ink SuccessButtonChild(String ButtonText) {
         style: ButtonTextStyle(),
       ),
     ),
+  );
+}
+
+Container StatusChild(statusText, statusColor) {
+  return Container(
+    alignment: Alignment.center,
+    child: Text(statusText,
+        style: TextStyle(
+            color: colorWhite, fontSize: 10, fontWeight: FontWeight.w400)),
+    decoration: BoxDecoration(
+      borderRadius: BorderRadius.circular(20),
+      color: statusColor,
+    ),
+    height: 20,
+    width: 60,
   );
 }
 
@@ -151,20 +179,4 @@ void ErrorToast(msg) {
       backgroundColor: colorRed,
       textColor: colorWhite,
       fontSize: 16.0);
-}
-
-PinTheme AppOTPStyle() {
-  return PinTheme(
-    inactiveColor: colorLight,
-    inactiveFillColor: colorWhite,
-    selectedColor: colorGreen,
-    activeColor: colorWhite,
-    selectedFillColor: colorGreen,
-    shape: PinCodeFieldShape.box,
-    borderRadius: BorderRadius.circular(5),
-    fieldHeight: 50,
-    borderWidth: 0.5,
-    fieldWidth: 45,
-    activeFillColor: Colors.white,
-  );
 }

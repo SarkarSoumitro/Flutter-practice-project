@@ -6,6 +6,7 @@ import 'package:module_14_task_management/screen/onboarding/pinVerificationScree
 import 'package:module_14_task_management/screen/onboarding/registrationScreen.dart';
 import 'package:module_14_task_management/screen/onboarding/setPasswordScreen.dart';
 import 'package:module_14_task_management/screen/task/homeScreen.dart';
+import 'package:module_14_task_management/screen/task/taskCreateScreen.dart';
 import 'package:module_14_task_management/utility/utility.dart';
 
 main() async {
@@ -31,11 +32,12 @@ class Myapp extends StatelessWidget {
       routes: {
         '/': (context) => homeScreen(),
         '/login': (context) => LoginScreen(),
-        '/registration': (context) => ragistrationScreen(),
+        '/registration': (context) => registrationScreen(),
         '/emailVerification': (context) => emailVerificationScreen(),
         '/pinVerification': (context) => pinVerificationScreen(),
         '/setPassword': (context) => setPasswordScreen(),
-        '/newTaskList': (context) => newTaskList()
+        '/newTaskList': (context) => newTaskList(),
+        '/taskCreate': (context) => taskCreateScreen()
       },
     );
   }

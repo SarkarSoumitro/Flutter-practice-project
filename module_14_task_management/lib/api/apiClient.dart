@@ -23,35 +23,17 @@ Future<bool> LoginRequest(FormValues) async {
   }
 }
 
-Future<bool> RegistrationRequest(Map<String, String> formValues) async {
-  try {
-    var url = Uri.parse("${BaseURL}/Registration");
-    var postBody = jsonEncode(formValues);
-
-    var response = await http.post(url, headers: RequestHeader, body: postBody);
-    var resultCode = response.statusCode;
-
-    // Handle response body safely
-    var resultBody;
-    try {
-      resultBody = jsonDecode(response.body);
-    } catch (e) {
-      print("Error decoding response body: $e");
-      ErrorToast("Invalid response format from server.");
-      return false;
-    }
-
-    // Check status code and result
-    if (resultCode == 200 && resultBody['status'] == 'success') {
-      SuccessToast("Request successful");
-      return true;
-    } else {
-      ErrorToast("Request failed: ${resultBody['message'] ?? 'Unknown error'}");
-      return false;
-    }
-  } catch (e) {
-    print("Error during registration request: $e");
-    ErrorToast("Failed to connect to the server.");
+Future<bool> RegistrationRequest(FormValues) async {
+  var URL = Uri.parse("${BaseURL}/Registration");
+  var PostBody = json.encode(FormValues);
+  var response = await http.post(URL, headers: RequestHeader, body: PostBody);
+  var ResultCode = response.statusCode;
+  var ResultBody = json.decode(response.body);
+  if (ResultCode == 200 && ResultBody['status'] == "success") {
+    SuccessToast("Request Success");
+    return true;
+  } else {
+    ErrorToast("Request fail ! try again");
     return false;
   }
 }
@@ -160,5 +142,66 @@ Future<List> TaskListRequest(Status) async {
   } else {
     ErrorToast("Request fail ! try again");
     return [];
+  }
+}
+
+Future<bool> TaskCreateRequest(FormValues) async {
+  var URL = Uri.parse("${BaseURL}/createTask");
+  String? token = await ReadUserData("token");
+  var RequestHeaderWithToken = {
+    "Content-Type": "application/json",
+    "token": '$token'
+  };
+
+  var PostBody = json.encode(FormValues);
+
+  var response =
+      await http.post(URL, headers: RequestHeaderWithToken, body: PostBody);
+  var ResultCode = response.statusCode;
+  var ResultBody = json.decode(response.body);
+  if (ResultCode == 200 && ResultBody['status'] == "success") {
+    SuccessToast("Request Success");
+    return true;
+  } else {
+    ErrorToast("Request fail ! try again");
+    return false;
+  }
+}
+
+Future<bool> TaskDeleteRequest(id) async {
+  var URL = Uri.parse("${BaseURL}/deleteTask/${id}");
+  String? token = await ReadUserData("token");
+  var RequestHeaderWithToken = {
+    "Content-Type": "application/json",
+    "token": '$token'
+  };
+  var response = await http.get(URL, headers: RequestHeaderWithToken);
+  var ResultCode = response.statusCode;
+  var ResultBody = json.decode(response.body);
+  if (ResultCode == 200 && ResultBody['status'] == "success") {
+    SuccessToast("Request Success");
+    return true;
+  } else {
+    ErrorToast("Request fail ! try again");
+    return false;
+  }
+}
+
+Future<bool> TaskUpdateRequest(id, status) async {
+  var URL = Uri.parse("${BaseURL}/updateTaskStatus/${id}/${status}");
+  String? token = await ReadUserData("token");
+  var RequestHeaderWithToken = {
+    "Content-Type": "application/json",
+    "token": '$token'
+  };
+  var response = await http.get(URL, headers: RequestHeaderWithToken);
+  var ResultCode = response.statusCode;
+  var ResultBody = json.decode(response.body);
+  if (ResultCode == 200 && ResultBody['status'] == "success") {
+    SuccessToast("Request Success");
+    return true;
+  } else {
+    ErrorToast("Request fail ! try again");
+    return false;
   }
 }

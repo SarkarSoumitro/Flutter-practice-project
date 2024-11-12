@@ -24,34 +24,25 @@ class _homeScreenState extends State<homeScreen> {
     "photo": DefaultProfilePic
   };
 
-  @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) => ReadAppBarData());
-  }
-
-  Future<void> ReadAppBarData() async {
+  ReadAppBarData() async {
     String? email = await ReadUserData('email');
     String? firstName = await ReadUserData('firstName');
     String? lastName = await ReadUserData('lastName');
     String? photo = await ReadUserData('photo');
+    setState(() {
+      ProfileData = {
+        "email": '$email',
+        "firstName": '$firstName',
+        "lastName": '$lastName',
+        "photo": '$photo'
+      };
+    });
+  }
 
-    // Check for nulls and apply fallback values
-    if (mounted) {
-      setState(() {
-        ProfileData = {
-          "email": email ?? '',
-          "firstName": firstName ?? '',
-          "lastName": lastName ?? '',
-          "photo":
-              photo ?? DefaultProfilePic, // Fallback profile picture if null
-        };
-      });
-    }
-
-    // Logging values to troubleshoot
-    print(
-        "Email: $email, First Name: $firstName, Last Name: $lastName, Photo: $photo");
+  @override
+  void initState() {
+    ReadAppBarData();
+    super.initState();
   }
 
   void onItemTapped(int index) {
