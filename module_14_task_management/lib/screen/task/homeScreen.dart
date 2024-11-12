@@ -18,18 +18,49 @@ class homeScreen extends StatefulWidget {
 class _homeScreenState extends State<homeScreen> {
   int TabIndex = 0;
   Map<String, String> ProfileData = {
-    "email": "",
-    "firstName": "",
-    "lastName": "",
+    "email": " ",
+    "firstName": " ",
+    "lastName": " ",
     "photo": DefaultProfilePic
   };
-  onItemTapped(index) {
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) => ReadAppBarData());
+  }
+
+  Future<void> ReadAppBarData() async {
+    String? email = await ReadUserData('email');
+    String? firstName = await ReadUserData('firstName');
+    String? lastName = await ReadUserData('lastName');
+    String? photo = await ReadUserData('photo');
+
+    // Check for nulls and apply fallback values
+    if (mounted) {
+      setState(() {
+        ProfileData = {
+          "email": email ?? '',
+          "firstName": firstName ?? '',
+          "lastName": lastName ?? '',
+          "photo":
+              photo ?? DefaultProfilePic, // Fallback profile picture if null
+        };
+      });
+    }
+
+    // Logging values to troubleshoot
+    print(
+        "Email: $email, First Name: $firstName, Last Name: $lastName, Photo: $photo");
+  }
+
+  void onItemTapped(int index) {
     setState(() {
       TabIndex = index;
     });
   }
 
-  final widgetsoptions = [
+  final List<Widget> widgetsOptions = [
     newTaskList(),
     progressTaskList(),
     completedTaskList(),
@@ -40,7 +71,7 @@ class _homeScreenState extends State<homeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: TaskAppBar(context, ProfileData),
-      body: widgetsoptions.elementAt(TabIndex),
+      body: widgetsOptions.elementAt(TabIndex),
       bottomNavigationBar: appBottomNav(TabIndex, onItemTapped),
     );
   }

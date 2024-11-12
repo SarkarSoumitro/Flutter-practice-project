@@ -1,53 +1,62 @@
+import 'dart:convert';
 import 'dart:typed_data';
 
 import 'package:shared_preferences/shared_preferences.dart';
 
 String DefaultProfilePic =
-    "data:image/jpeg;base64,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";
+    "data:image/jpeg;base64,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";
 
-Future<void> storeUserData(Map<String, dynamic> userData) async {
+Future<void> WriteUserData(Map<String, dynamic> UserData) async {
   final prefs = await SharedPreferences.getInstance();
-
-  // Check if 'data' contains at least one item
-  if (userData['data'] is List && userData['data'].isNotEmpty) {
-    var user = userData['data'][0]; // Get the first user object from the list
-
-    await prefs.setString('token', userData['token']);
-    await prefs.setString('email', user['email']);
-    await prefs.setString('firstName', user['firstName'] ?? '');
-    await prefs.setString('lastName', user['lastName'] ?? '');
-    await prefs.setString('mobile', user['mobile'] ?? '');
-    await prefs.setString('photo', user['photo'] ?? '');
-  } else {
-    print("Error: 'data' is either not a list or empty.");
-  }
-}
-
-Future<void> WriteEmailVerification(Email) async {
-  final prefs = await SharedPreferences.getInstance();
-  await prefs.setString('EmailVerification', Email);
-}
-
-Future<void> WriteOTPVerification(OTP) async {
-  final prefs = await SharedPreferences.getInstance();
-  await prefs.setString('OTPVerification', OTP);
+  await prefs.setString('token', UserData['token'] ?? '');
+  await prefs.setString('email', UserData['data']['email'] ?? '');
+  await prefs.setString('firstName', UserData['data']['firstName'] ?? '');
+  await prefs.setString('lastName', UserData['data']['lastName'] ?? '');
+  await prefs.setString('mobile', UserData['data']['mobile'] ?? '');
+  await prefs.setString(
+      'photo', UserData['data']['photo'] ?? DefaultProfilePic);
 }
 
 Future<String?> ReadUserData(String Key) async {
   final prefs = await SharedPreferences.getInstance();
-  String? mydata = prefs.getString(Key);
-  print("There is all the data: $mydata");
-  return mydata;
+  return prefs.getString(Key);
 }
 
-ShowBase64Image(Base64String) {
-  UriData? data = Uri.parse(Base64String).data;
-  Uint8List MyImage = data!.contentAsBytes();
-  return MyImage;
+Future<void> WriteEmailVerification(String Email) async {
+  final prefs = await SharedPreferences.getInstance();
+  await prefs.setString('EmailVerification', Email);
+}
+
+Future<void> WriteOTPVerification(String OTP) async {
+  final prefs = await SharedPreferences.getInstance();
+  await prefs.setString('OTPVerification', OTP);
 }
 
 Future<bool> RemoveToken() async {
   final prefs = await SharedPreferences.getInstance();
-  await prefs.clear();
+  await prefs.remove('token');
   return true;
+}
+
+ShowBase64Image(String Base64String) {
+  try {
+    // Remove the Base64 prefix if it exists (e.g., "data:image/jpeg;base64,")
+    if (Base64String.contains("base64,")) {
+      Base64String = Base64String.split("base64,").last;
+    }
+
+    // Decode the Base64 string
+    Uint8List decodedBytes = base64Decode(Base64String);
+
+    // If the decoded bytes are empty or invalid, throw an error
+    if (decodedBytes.isEmpty) {
+      throw Exception("Invalid image data");
+    }
+
+    return decodedBytes; // Return the decoded bytes as Uint8List
+  } catch (e) {
+    // Handle errors and provide a fallback for invalid Base64
+    print("Error parsing Base64 image: $e");
+    return Uint8List(0); // Return empty Uint8List on error (fallback)
+  }
 }
